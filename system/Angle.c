@@ -12,11 +12,15 @@ ANGLE Get_Accangle(int32_t AccX, int32_t AccZ) {
 
 ANGLE Get_angle(uint32_t us) {
 		static ANGLE angle=180;
-		ANGLE angleGy;
+		static ANGLE perAccangle=180;
 		int16_t AX, AY, AZ, GX, GY, GZ;
 	    MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
+		ANGLE angleGy;
+		ANGLE Accangle=Get_Accangle(AX,AZ);
+		
         angleGy=angle-GY/32768.0 * 2000.0*0.02;
-        angle =angleGy*0.99+Get_Accangle(AX,AZ)*0.01;
+        angle =angleGy*0.99+(Accangle*0.8+perAccangle*0.2)*0.01;
+		perAccangle=Accangle;
         return angle-2;
 }
 ANGLE Get_convert_Angle_to_360(ANGLE angle) {

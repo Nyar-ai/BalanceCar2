@@ -1,10 +1,6 @@
 #include "Angle.h"
 #include <math.h>
 #include <stdio.h>
-void  Change_Gyangle(ANGLE Angular_velocity, uint32_t us, ANGLE* Gyangle) {
-
-	*Gyangle = *Gyangle+ Angular_velocity/32768.0 * 2000.0  * us / 1000000;
-}
 ANGLE Get_Accangle(int32_t AccX, int32_t AccZ) {
 	return Get_convert_Angle_to_360(atan2(AccX, AccZ)/ 3.1415926535 * 180);
 }

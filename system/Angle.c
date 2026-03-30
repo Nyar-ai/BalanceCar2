@@ -1,6 +1,12 @@
 #include "Angle.h"
 #include <math.h>
 #include <stdio.h>
+ANGLE Get_convert_Angle_to_360(ANGLE angle) {
+    if (angle < 0) {
+        return angle + 360;
+    }
+    return angle;
+}
 ANGLE Get_Accangle(int32_t AccX, int32_t AccZ) {
 	return Get_convert_Angle_to_360(atan2(AccX, AccZ)/ 3.1415926535 * 180);
 }
@@ -20,9 +26,4 @@ ANGLE Get_angle(uint32_t us) {
 		perAccangle=Accangle;
         return angle+offset;
 }
-ANGLE Get_convert_Angle_to_360(ANGLE angle) {
-    if (angle < 0) {
-        return angle + 360;
-    }
-    return angle;
-}
+

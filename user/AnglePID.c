@@ -1,12 +1,14 @@
 #include "AnglePID.h"
 
-typedef struct PID_Parameter
-{
-    int8_t KP=0;
-    int8_t KI=0;
-    int8_t KD=0;
-    FORCE Max_force=100;
-    FORCE Min_force=0;
+
+
+
+typedef struct{
+    int8_t KP;
+    int8_t KI;
+    int8_t KD;
+    FORCE Max_force;
+    FORCE Min_force;
 }PID_Parameter;
 
 
@@ -18,14 +20,14 @@ void AnglePID_config(PID_Parameter PIDconfigStruct){
     Parameter.Max_force=PIDconfigStruct.Max_force;
     Parameter.Min_force=PIDconfigStruct.Min_force;
 }
-ANGLE error(ANGLE act_angle,ANGLE aim_angle){
+ANGLE Error(ANGLE act_angle,ANGLE aim_angle){
     return aim_angle -act_angle;
 }
 
 
 
 FORCE AnglePID(ANGLE act_angle ,ANGLE aim_angle){
-    ANGLE error = error(act_angle,aim_angle);
+    ANGLE error = Error(act_angle,aim_angle);
     static ANGLE Pererror=0;
     static ANGLE accumulate=0;
     if(Parameter.KI){

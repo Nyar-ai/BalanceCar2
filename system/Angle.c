@@ -1,10 +1,13 @@
 #include "Angle.h"
 #include <math.h>
 #include <stdio.h>
+#include "MPU6050.h"
 ANGLE Get_convert_Angle_to_360(ANGLE angle) {
+    /*
     if (angle < 0) {
         return angle + 360;
     }
+    */
     return angle;
 }
 ANGLE Get_Accangle(int32_t AccX, int32_t AccZ) {
@@ -15,7 +18,7 @@ ANGLE Get_Accangle(int32_t AccX, int32_t AccZ) {
 ANGLE Get_angle(uint32_t us) {
 		static ANGLE angle=180;
 		static ANGLE perAccangle=180;
-  ANGLE offset=-2;
+        ANGLE offset=-2;
 		int16_t AX, AY, AZ, GX, GY, GZ;
 	    MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
 		ANGLE angleGy;

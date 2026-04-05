@@ -4,15 +4,14 @@
 #include "OLED.h"
 #include "math.h"
 #include "Angle.h"
-#include "Serial.h"
+#include "CH04.h"
 int16_t AX, AY, AZ, GX, GY, GZ;
 ANGLE angle;
 ANGLE angle2;
 
 int main(void)
 {   
-    Serial_Init();
-
+    CH04_Serial_Init();
     Timer_Init();
     OLED_Init();
     MPU6050_Init();
